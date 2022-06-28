@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const { createToken, hashPassword } = require("../services/authServices");
 /// register api ////
 
 module.exports.register = async (req, res) => {
@@ -11,15 +12,15 @@ module.exports.register = async (req, res) => {
         const emailExist = await User.findOne({ email })
         try {
             if (!emailExist) {
-                const hashed = await bcrypt.hash(password, 10)
+                const hashed = await hashPassword(password)
                 const user = await User.create({
                     name,
                     email,
                     password: hashed
                 })
                 console.log(user)
-                //  res.status(201).json(user)
-                return res.status(201).json({ msg: "your account has been created", user })
+                const token = createToken({id : user._id , name : user.name})
+                return res.status(201).json({ msg: "your account has been created", token })
             } else {
 
                 return res.status(401).json({ errors: [{ msg: `${email} is already taken` }] })
@@ -47,7 +48,7 @@ module.exports.login = async (req, res) => {
             const login = await User.findOne({ email })
             if (!login) {
                 return res.status(401).json({ errors: [{ msg: "email is not found" }] })
-
+                
             }
             else {
                 return res.status(201).json({ msg: "login successfully" })
