@@ -26,6 +26,14 @@ const ProductSchema = new mongoose.Schema({
         to : {type : String , required : true}
 
      },
+    ],
+    packeges : [
+       { 
+        driver : {type : Boolean},
+        AC : {type : Boolean},
+        Mp3 : {type : Boolean},
+        fuelType : {type : String}
+    }
     ]
 
 }, { timestamps: true })
