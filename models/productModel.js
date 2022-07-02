@@ -3,22 +3,22 @@ const mongoose = require("mongoose");
 const ProductSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        // required: true
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     category: {
         type: String,
-        required: true
+        // required: true
     },
     imagePath : {
         type : String
     },
     rentPerHour: {
         type: Number,
-        required: true
+        // required: true
     },
     timeSlot: [
      {

@@ -21,3 +21,15 @@ module.exports.getBooking = async(req , res) => {
         res.status(500).json(error.message)
     }
 }
+
+module.exports.deleteBooking = async (req, res) => {
+    const { id } = req.params;
+    // console.log(id)
+    try {
+        const response = await Booking.deleteOne({ _id: id })
+        res.status(200).json({ message: "Booking deleted sucessfully", response })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error.message)
+    }
+}
