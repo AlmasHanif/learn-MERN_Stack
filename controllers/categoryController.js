@@ -51,7 +51,7 @@ module.exports.deleteCategory = async (req, res) => {
   // console.log(id)
   try {
       const response = await Category.deleteOne({ _id: id })
-      res.status(200).json({ message: "user deleted sucessfully", response })
+      res.status(200).json({ message: "category deleted sucessfully", response })
   } catch (error) {
       console.log(error)
       res.status(500).json(error.message)
