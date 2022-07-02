@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const BookingSchema = new mongoose.Schema({
     car : {
-        type : mongoose.Schema.Types.ObjectId ,
-        ref : "Product"
+        type : String ,
+        
     },
     user : {
-        type : mongoose.Schema.Types.ObjectId ,
-        ref : "User"
+        type :String ,
     },
     bookedTimeSlot : [
         {
